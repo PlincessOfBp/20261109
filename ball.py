@@ -4,11 +4,16 @@ import game_world
 
 
 class Ball:
-    image = None
+    images = {}
+    selected_size = 1
 
-    def __init__(self, x, y, velocity):
-        if Ball.image is None:
-            Ball.image = load_image('ball21x21.png')
+    def __init__(self, x, y, velocity, size=1):
+        if size not in (1, 2):
+            raise ValueError(f'Unsupported ball size: {size}')
+        if size not in Ball.images:
+            image_file = 'ball21x21.png' if size == 1 else 'ball41x41.png'
+            Ball.images[size] = load_image(image_file)
+        self.image = Ball.images[size]
         self.x, self.y = x, y
         self.velocity = velocity
 

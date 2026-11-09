@@ -3,12 +3,10 @@ import game_framework
 import game_world
 import pause_mode
 import title_mode
-import item_mode
 from boy import Boy
 from grass import Grass
 
 pause_started_at = 0.0
-selected_ball = 1
 
 
 def handle_events():
@@ -29,6 +27,7 @@ def handle_event(event):
         game_framework.push_mode(pause_mode)
         return True
     if event.type == SDL_KEYDOWN and event.key == SDLK_i:
+        import item_mode
         game_framework.push_mode(item_mode, pause_current=False)
         return True
     boy.handle_event(event)

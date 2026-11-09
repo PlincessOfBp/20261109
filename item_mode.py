@@ -1,5 +1,6 @@
 import game_framework
 import play_mode
+from ball import Ball
 from pico2d import get_events, load_image, update_canvas
 from sdl2 import (SDL_KEYDOWN, SDL_QUIT, SDLK_0, SDLK_1, SDLK_2, SDLK_ESCAPE,
                   SDLK_i)
@@ -38,7 +39,7 @@ def handle_events():
                 game_framework.pop_mode(resume_current=False)
                 return
             if event.key in (SDLK_0, SDLK_1, SDLK_2):
-                play_mode.selected_ball = event.key - SDLK_0
+                Ball.selected_size = event.key - SDLK_0
                 continue
 
         if play_mode.handle_event(event):

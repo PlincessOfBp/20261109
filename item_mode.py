@@ -40,7 +40,8 @@ def handle_events():
                 return
             if event.key in (SDLK_0, SDLK_1, SDLK_2):
                 Ball.selected_size = event.key - SDLK_0
-                continue
+                game_framework.pop_mode(resume_current=False)
+                return
 
         if play_mode.handle_event(event):
             return

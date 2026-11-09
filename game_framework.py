@@ -10,19 +10,19 @@ def change_mode(mode):
     mode.init()
 
 
-def push_mode(mode):
-    if stack:
+def push_mode(mode, pause_current=True):
+    if stack and pause_current:
         stack[-1].pause()
     stack.append(mode)
     mode.init()
 
 
-def pop_mode():
+def pop_mode(resume_current=True):
     if stack:
         stack.pop().finish()
-    if stack:
+    if stack and resume_current:
         stack[-1].resume()
-    else:
+    elif not stack:
         quit()
 
 
